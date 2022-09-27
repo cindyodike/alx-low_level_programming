@@ -1,35 +1,32 @@
 #include "main.h"
 
-#include "holberton.h"
 /**
- * *rot13 - function that encodes a string using rot13.
- * @s: pointer pointed to the variable s , of type character
- * Return: Pointer P , pointed to the variable s of type char.
- * Update V2.0 : using Pointers instead of arrays to minimize the use
- * of allocated memory and to improve the esthetic and simplicity of the code.
+ * rot13 - Entry point
+ * ONE if, TWO loops only...
+ * @n: input
+ * Return: decrypted string
  */
-char *rot13(char *s)
+char *rot13(char *n)
 {
-int i;
-char *p = s;
+	int x, rot_c = 13, i = 0;
+	char toswap[] = {'A', 'N', 'a', 'n', 'B', 'O', 'b', 'o', 'C', 'P',
+		'c', 'p', 'D', 'Q', 'd', 'q', 'E', 'R', 'e', 'r', 'F', 'S', 'f',
+		's', 'G', 'T', 'g', 't', 'H', 'U', 'h', 'u', 'I', 'V', 'i', 'v',
+		'J', 'W', 'j', 'w', 'K', 'X', 'k', 'x', 'L', 'Y', 'l', 'y', 'M',
+		'Z', 'm', 'z'};
 
-char *original = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-char *code = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-
-while (*s != '\0')
-{
-	i = 0;
-	while (i < 53)
+	while (n[i] != '\0')
 	{
-		if (*s == original[i])
-	{
-			*s = code[i];
-				break;
-	}
+		for (x = 0; x <= 51; x++)
+		{
+			if (n[i] == toswap[x])
+			{
+				n[i] = n[i] + rot_c;
+				x = 51;
+			}
+			rot_c = rot_c * -1;
+		}
 		i++;
 	}
-		s++;
-	}
-return (p);
+	return (n);
 }
-
