@@ -53,3 +53,21 @@ int main(int argc, char *argv[])
 	closer(file_to);
 	return (0);
 }
+
+/**
+ * closer - close with error
+ * @arg_files: argv 1 or 2
+ * Return: void
+ */
+void closer(int arg_files)
+{
+	int close_err;
+
+	close_err = close(arg_files);
+
+	if (close_err == -1)
+	{
+		dprintf(2, "Error: Can't close fd %d\n", arg_files);
+		exit(100);
+	}
+}
